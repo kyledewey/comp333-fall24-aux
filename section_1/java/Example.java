@@ -3,21 +3,13 @@
 public class Example {
     // public static boolean doesUserWantConsole(String[] args) { ... }
     public static String getDestinationFile(String[] args) throws Exception { ... }
-
-    public static void write(FileOutputStream stream, int toWrite) {
-	if (stream == null) { // odd - rechecking stream
-	    System.out.println(retval);
-	} else {
-	    stream.writeln(retval);
-	}
-    }
 	
-    public static int doComputation(FileOutputStream stream) {
+    public static int doComputation(Writer writer) {
 	int retval = 3;
 	for (long x = 1; x < 999999999999; x++) {
 	    retval *= (int)x;
 	    if (x % 1000 == 0) {
-		write(stream, retval); // odd - rechecking stream
+		writer.write(retval); // odd - rechecking stream
 	    }
 	}
 	return retval;
@@ -25,16 +17,21 @@ public class Example {
     
     public static void main(String[] args) throws Exception {
 	String destinationFile = getDestinationFile(args);
+	NetworkLocation location = getNetworkLocation(args);
+	
 	FileOutputStream stream = null;
+	Socket socket = null;
+	
 	if (destinationFile != null) {
 	    stream = new FileOutputStream(destinationFile);
+	} else if (location != null) {
+	    socket = new Socket(location);
 	}
 
-	int result = doComputation(stream);
+	Writer writer = new Writer(stream, socket);
+	int result = doComputation(writer);
 
-	write(stream, result);
-	if (stream != null) {
-	    stream.close();
-	}
+	writer.write(result);
+	writer.close();
     }
 }
