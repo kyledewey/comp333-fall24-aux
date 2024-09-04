@@ -9,6 +9,7 @@ public class Example {
 	for (long x = 1; x < 999999999999; x++) {
 	    retval *= (int)x;
 	    if (x % 1000 == 0) {
+		// ad-hoc polymorphism
 		writer.write(retval); // odd - rechecking stream
 	    }
 	}
@@ -18,17 +19,23 @@ public class Example {
     public static void main(String[] args) throws Exception {
 	String destinationFile = getDestinationFile(args);
 	NetworkLocation location = getNetworkLocation(args);
-	
-	FileOutputStream stream = null;
-	Socket socket = null;
+
+	Writer writer = null;
 	
 	if (destinationFile != null) {
-	    stream = new FileOutputStream(destinationFile);
+	    // writing to file - subtyping polymorphism
+	    // Writer = FileWriter
+	    writer = new FileWriter(new FileOutputStream(destinationFile));
 	} else if (location != null) {
-	    socket = new Socket(location);
+	    // writing to network - subtyping polymorphism
+	    // Writer = NetworkWriter
+	    writer = new NetworkWriter(new Socket(location));
+	} else {
+	    // writing to console - subtyping polymorphism
+	    // Writer = ConsoleWriter
+	    writer = new ConsoleWriter();
 	}
 
-	Writer writer = new Writer(stream, socket);
 	int result = doComputation(writer);
 
 	writer.write(result);
