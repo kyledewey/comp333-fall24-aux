@@ -1,3 +1,6 @@
 # Emacs stuff
 *~
 \#*\#
+
+# compiled stuff
+*.class
