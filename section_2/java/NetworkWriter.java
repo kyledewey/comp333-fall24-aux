@@ -1,4 +1,4 @@
-public class NetworkWriter extends Writer {
+public class NetworkWriter implements Writer {
     private final Socket socket;
     public NetworkWriter(Socket socket) {
 	assert(socket != null);

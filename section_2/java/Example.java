@@ -35,21 +35,39 @@ public class Example {
 	boolean userWantsConsole = doesUserWantConsole(args);
 	String destinationFile = getDestinationFile(args);
 	NetworkLocation location = getNetworkLocation(args);
+
+	// At compile time: writer has type Writer
+	// At runtime, any of these three is possible:
+	// - ConsoleWriter
+	// - FileWriter
+	// - NetworkWriter
 	Writer writer = null;
 
 	if (userWantsConsole) {
 	    // subtyping polymorphism
+	    // Writer = ConsoleWriter
 	    writer = new ConsoleWriter();
 	} else if (destinationFile != null) {
 	    // subtyping polymorphism
+	    // Writer = FileWriter
 	    writer = new FileWriter(new FileOutputStream(new File(destinationFile)));
 	} else if (location != null) {
 	    // subtyping polymorphism
+	    // Writer = NetworkWriter
 	    writer = new NetworkWriter(new Socket(location));
 	}
 
 	int result = doComputation(writer);
 
+	// ad-hoc polymorphism - look at runtime type,
+	// call method on that specific type
+	// if (writer instanceof ConsoleWriter) {
+	//     // ConsoleWriter's write
+	// } else if (writer instanceof FileWriter) {
+	//     // FileWriter's write
+	// } else if (writer instanceof NetworkWriter) {
+	//     // NetworkWriter's write
+	// }
 	writer.write(result);
 	writer.close();
     }

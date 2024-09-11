@@ -1,6 +1,6 @@
-public abstract class Writer {
-    public abstract void write(int result);
-    public abstract void close();
+public interface Writer {
+    public void write(int result);
+    public void close();
 }
 
     

@@ -1,4 +1,4 @@
-public class FileWriter extends Writer {
+public class FileWriter implements Writer {
     private final FileOutputStream stream;
     public FileWriter(FileOutputStream stream) {
 	assert(stream != null);
