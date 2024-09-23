@@ -30,5 +30,13 @@ public class Nil implements ImmutableList {
     public int hashCode() {
         return 0;
     } // hashCode
+
+    // [].addAmount(5) ==> []
+    public ImmutableList addAmount(int amount) {
+	// amount: 5
+	// this: []
+	return this;
+	// return new Nil();
+    }
 } // Nil
     

@@ -6,6 +6,11 @@ public interface ImmutableList {
 
     // examples
     public boolean isEmpty();
+
+    // [4, 0, 5].addAmount(2) ==> [6, 2, 7]
+    // [2, 7].addAmount(1) ==> [3, 8]
+    // [].addAmount(5) ==> []
+    public ImmutableList addAmount(int amount);
     
     public String toString();
     public int hashCode();
