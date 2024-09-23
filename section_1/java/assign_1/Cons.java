@@ -56,4 +56,30 @@ public class Cons implements ImmutableList {
     public int hashCode() {
         return sum();
     } // hashCode
+
+    // [1, 2].addAmount(5) ==> [6, 7]
+    //   [1 + 5, 2 + 5]
+    //
+    // [3, 1, 4].addAmount(2) ==> [5, 3, 6]
+    public ImmutableList addAmount(int amount) {
+	System.out.println("Head: " + head);
+	// amount: 2
+	// head: 3
+	// tail: [1, 4]
+	// this: [3, 1, 4]
+	// return value: [5, 3, 6]
+	//
+	//                   [1, 4].addAmount(2)
+	ImmutableList rest = tail.addAmount(amount);
+	// rest: [3, 6]
+	return new Cons(head + amount, rest);
+
+	// return new Cons(head + amount, tail.addAmount(amount));
+    }
+
+    public static void main(String[] args) {
+	// [7].addAmount(2) 
+	ImmutableList list = new Cons(7, new Nil());
+	ImmutableList result = list.addAmount(2);
+    }
 } // Cons

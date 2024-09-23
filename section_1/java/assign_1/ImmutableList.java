@@ -11,7 +11,6 @@ public interface ImmutableList {
     // [1, 2].addAmount(5) ==> [6, 7]
     //   [1 + 5, 2 + 5]
     // [3, 1, 4].addAmount(2) ==> [5, 3, 6]
-    // [].addAmount(7) ==> []
     public ImmutableList addAmount(int amount);
     
     // provided
