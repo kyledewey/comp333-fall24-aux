@@ -59,7 +59,7 @@ public class Types {
     
     public static void main(String[] args) {
 	int x = 7;
-	x = "foo";
+	x = "foo"; // won't compile
 
 	add(1, 2); // calls add(int, int)
 	add("foo", "bar"); // calls add(String, String)
