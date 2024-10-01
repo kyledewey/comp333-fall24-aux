@@ -35,7 +35,7 @@ public class Types {
     public static void main(String[] args) {
 	int x = 7;
 	x = 27;
-	x = "foo";
+	x = "foo"; // won't compile
     }
 }
 
