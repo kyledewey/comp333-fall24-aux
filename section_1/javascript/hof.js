@@ -74,3 +74,22 @@ function indirectIf(bool, function1, function2) {
         return function2();
     }
 }
+
+// indirectWhile takes:
+// - A function (foo)
+//   - Takes nothing
+//   - Returns a boolean
+// - Another function (bar)
+//   - Takes nothing
+//   - Returns nothing
+function indirectWhile(foo, bar) {
+    // foo() && (bar(), indirectWhile(foo, bar))
+    // (foo()) ? (bar() || indirectWhile(foo, bar)) : undefined;
+    if (foo()) {
+        // bar() + indirectWhile(foo, bar)
+        bar();
+        indirectWhile(foo, bar);
+    }
+}
+
+// TODO: explain functional purity - foo and bar can't be pure above
