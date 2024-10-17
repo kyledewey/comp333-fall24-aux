@@ -70,4 +70,34 @@ function seeIncDec(x) {
             function () { x--; }];
 }
 
-        
+callMe = (foo) => foo();
+// function callMe(foo) {
+//     foo();
+// }
+
+// function indirectIf(isOne, one, two) {
+//     if (isOne) {
+//         one();
+//     } else {
+//         two();
+//     }
+// }
+
+// otherFunc = (a) => (a) ? () => console.log('yes') : () => console.log('no');
+
+indirectIf = (a, one, two) => (a) ? one() : two();
+
+function indirectWhile(condition, body) {
+    if (condition()) {
+        body();
+        indirectWhile(condition, body);
+    }
+}
+
+function indirectAdd(x) {
+    return function (y) {
+        return x + y;
+    }
+}
+
+// TODO: debug1

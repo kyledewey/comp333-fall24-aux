@@ -93,3 +93,4 @@ function indirectWhile(foo, bar) {
 }
 
 // TODO: explain functional purity - foo and bar can't be pure above
+// TODO: indirectAdd, debug1
