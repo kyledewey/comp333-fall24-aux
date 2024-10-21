@@ -82,15 +82,59 @@ function indirectIf(bool, function1, function2) {
 // - Another function (bar)
 //   - Takes nothing
 //   - Returns nothing
-function indirectWhile(foo, bar) {
-    // foo() && (bar(), indirectWhile(foo, bar))
-    // (foo()) ? (bar() || indirectWhile(foo, bar)) : undefined;
-    if (foo()) {
-        // bar() + indirectWhile(foo, bar)
-        bar();
-        indirectWhile(foo, bar);
+function indirectWhile(condition, body) {
+    // condition() && (body(), indirectWhile(condition, body))
+    // (condition()) ? (body() || indirectWhile(condition, body)) : undefined;
+    if (condition()) {
+        // body() + indirectWhile(condition, body)
+        body();
+        indirectWhile(condition, body);
     }
 }
 
-// TODO: explain functional purity - foo and bar can't be pure above
-// TODO: indirectAdd, debug1
+function addOne(y) {
+    return 1 + y;
+}
+
+function indirectAdd(x) {
+    return function (y) {
+        return x + y;
+    };
+}
+
+function add(x, y) {
+    return x + y;
+    // console.log('FIRST PARAM: ' + x);
+    // console.log('SECOND PARAM: ' + y);
+    // let retval = x + y;
+    // console.log('RETURN VAL: ' + retval);
+    // return retval;
+}
+
+function subtract(x, y) {
+    return x - y;
+}
+
+// func is a function that takes two arguments
+function debug2(func) {
+    return function (x, y) {
+        console.log('FIRST PARAM: ' + x);
+        console.log('SECOND PARAM: ' + y);
+        let retval = func(x, y);
+        console.log('RETURN VAL: ' + retval);
+        return retval;
+    };
+}
+
+// wrapAdd takes:
+// 1.) A function (f)
+//       - Takes one parameter
+//       - Returns an integer
+// 2.) An integer (n)
+//
+// Returns a function
+//   - Takes a parameter (p)
+//   Adds p to n before calling f with this as input
+//  
+// def wrapAdd(f : (Int) => Int, n: Int): (Int) => Int
+
