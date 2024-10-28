@@ -4,11 +4,21 @@
 // lambda functions
 // lambdas
 
-function printArray(arr) {
+// NEXT CLASS: filter
+// for (let index = 0; index < arr.length; index++) {
+//   let elem = arr[index];
+//   if (...elem...) {
+//     ...
+//   }
+// }
+function forEach(arr, func) {
     for (let index = 0; index < arr.length; index++) {
-        let element = arr[index];
-        console.log(element);
+        func(arr[index]);
     }
+}
+
+function printArray(arr) {
+    forEach(arr, (e) => console.log(e));
 }
 
 // higher-order functions: functions are data
@@ -16,12 +26,17 @@ function printArray(arr) {
 // - Takes an array element
 // - Returns true if the element should be printed
 function printArrayComparison(arr, compare) {
-    for (let index = 0; index < arr.length; index++) {
-        let element = arr[index];
-        if (compare(element)) {
-            console.log(element);
+    forEach(arr, function (e) {
+        if (compare(e)) {
+            console.log(e)
         }
-    }
+    });
+    // for (let index = 0; index < arr.length; index++) {
+    //     let element = arr[index];
+    //     if (compare(element)) {
+    //         console.log(element);
+    //     }
+    // }
 }
 
 // synchronous I/O
@@ -138,3 +153,33 @@ function debug2(func) {
 //  
 // def wrapAdd(f : (Int) => Int, n: Int): (Int) => Int
 
+function increment(x) {
+    let y = 17;
+    return x + 1 + y;
+}
+
+// wrapAdd(increment, 5)
+
+function wrapAdd(returnFunction, addInt) {
+    y = 17;
+    return function (newInt) {
+        let retval = addInt + newInt;
+        return returnFunction(retval);
+    };
+}
+
+// function wrapAdd(task, i) {
+//     return (param) => task(i + param);
+// }
+
+// let wrapAdd = (task, i) => ((param) => task(i + param));
+
+function surprise() {
+    x = 2; // introduces global variable x
+}
+
+// if True:
+//   x = 3
+// else:
+//   x = 5
+// print(x)
