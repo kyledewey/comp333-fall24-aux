@@ -100,4 +100,43 @@ function indirectAdd(x) {
     }
 }
 
-// TODO: debug1
+function add(x, y) {
+    return x + y;
+}
+
+function subtract(x, y) {
+    return x - y;
+}
+
+// func is a function:
+//   -Takes two parameters
+//   -Returns something
+// Returns a function taking two parameters, with debugging output
+function debug2(func) {
+    return function(x, y) {
+        console.log('First param: ' + x);
+        console.log('Second param: ' + y);
+        let retval = func(x, y);
+        console.log('Return value: ' + retval);
+        return retval;
+    };
+}
+
+// wrapAdd takes two parameters:
+// 1.) A function (f)
+//       - Takes one parameter
+//       - Returns something
+// 2.) An integer (m)
+//
+// wrapAdd returns a function:
+//   - Takes a parameter (a)
+//   - Returns something
+//
+// a + m
+//
+// def wrapAdd(func: (Int) => Int, integer: Int): (Int) => Int
+function wrapAdd(func, integer) {
+    return function (param) {
+        return func(param + integer);
+    }
+}
