@@ -1,26 +1,48 @@
+// FOR Wednesday: reduce
+
 // higher-order functions
 // closures
 // anonymous functions
 // lambda functions
 // lambdas
 
-function printArray(arr) {
+function forEach(arr, func) {
     for (let index = 0; index < arr.length; index++) {
         let element = arr[index];
-        console.log(element);
+        func(element);
     }
+}
+
+function printArray(arr) {
+    forEach(arr, (e) => console.log(e));
 }
 
 // shouldPrint is a function
 // - Takes an array element
 // - Returns true if we should print the array element
 function printSomeArray(arr, shouldPrint) {
-    for (let index = 0; index < arr.length; index++) {
-        let element = arr[index];
-        if (shouldPrint(element)) {
-            console.log(element);
-        }
-    }
+    arr.filter(shouldPrint).forEach((e) => console.log(e));
+
+    // forEach(arr,
+    //         (element) => {
+    //             if (shouldPrint(element)) {
+    //                 console.log(element);
+    //             }
+    //         });
+    
+    // forEach(arr,
+    //         function (element) {
+    //             if (shouldPrint(element)) {
+    //                 console.log(element);
+    //             }
+    //         });
+
+    // for (let index = 0; index < arr.length; index++) {
+    //     let element = arr[index];
+    //     if (shouldPrint(element)) {
+    //         console.log(element);
+    //     }
+    // }
 }
 
 function printGreaterThan(arr, amount) {
