@@ -4,7 +4,21 @@
 // lambda functions
 // lambdas
 
-// NEXT CLASS: filter
+function overload(x, y, z) {
+    if (x === undefined &&
+        y === undefined &&
+        z === undefined) {
+        console.log("no params");
+    } else if (y === undefined &&
+               z === undefined) {
+        console.log(x);
+    } else if (z === undefined) {
+        console.log(x + y);
+    } else {
+        console.log(x + y + z);
+    }
+}
+
 // for (let index = 0; index < arr.length; index++) {
 //   let elem = arr[index];
 //   if (...elem...) {
@@ -26,11 +40,14 @@ function printArray(arr) {
 // - Takes an array element
 // - Returns true if the element should be printed
 function printArrayComparison(arr, compare) {
-    forEach(arr, function (e) {
-        if (compare(e)) {
-            console.log(e)
-        }
-    });
+    arr.filter(compare).forEach((e) => console.log(e));
+    
+    // forEach(arr, function (e) {
+    //     if (compare(e)) {
+    //         console.log(e)
+    //     }
+    // });
+    
     // for (let index = 0; index < arr.length; index++) {
     //     let element = arr[index];
     //     if (compare(element)) {

@@ -1,4 +1,51 @@
-// FOR Wednesday: reduce
+// Different things:
+// -Initial value
+// -Operation applied to (currentResult, currentArrayElement);
+//  returns the new result
+
+function reduceLeft(arr, initialValue, operation) {
+    let accumulator = initialValue;
+    for (let index = 0; index < arr.length; index++) {
+        let element = arr[index];
+        accumulator = operation(accumulator, element);
+    }
+    return accumulator;
+}
+
+function add(x, y) {
+    return x + y;
+}
+
+function sum(arr) {
+    return reduceLeft(arr, 0, add);
+    // return reduceLeft(arr, 0, (accum, e) => accum + e);
+    // let retval = 0;
+    // for (let index = 0; index < arr.length; index++) {
+    //     let element = arr[index];
+    //     retval = retval + element;
+    // }
+    // return retval;
+}
+
+function concatenate(arr) {
+    return reduceLeft(arr, "", (accum, e) => accum + e);
+    // let retval = "";
+    // for (let index = 0; index < arr.length; index++) {
+    //     let element = arr[index];
+    //     retval = retval + element;
+    // }
+    // return retval;
+}
+
+function product(arr) {
+    return reduceLeft(arr, 1, (accum, e) => accum * e);
+    // let retval = 1;
+    // for (let index = 0; index < arr.length; index++) {
+    //     let element = arr[index];
+    //     retval = retval * element;
+    // }
+    // return retval;
+}
 
 // higher-order functions
 // closures
