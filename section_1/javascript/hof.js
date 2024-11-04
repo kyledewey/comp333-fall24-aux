@@ -200,3 +200,53 @@ function surprise() {
 // else:
 //   x = 5
 // print(x)
+
+// operation is a function
+// - Takes current value of the accumulator and current array element
+// - Returns the new value of the accumulator
+function reduce(arr, initialValue, operation) {
+    let accumulator = initialValue;
+    for (let index = 0; index < arr.length; index++) {
+        // retval += arr[index];
+        let element = arr[index];
+        accumulator = operation(accumulator, element);
+    }
+    return accumulator;
+}
+
+function sum(arr) {
+    return reduce(arr, 0, (a, e) => a + e);
+    // let retval = 0; // accumulator
+    // for (let index = 0; index < arr.length; index++) {
+    //     // retval += arr[index];
+    //     let element = arr[index];
+    //     retval = retval + element;
+    // }
+    // return retval;
+}
+
+function product(arr) {
+    return reduce(arr, 1, (a, e) => a * e);
+    // let retval = 1;
+    // for (let index = 0; index < arr.length; index++) {
+    //     // retval += arr[index];
+    //     let element = arr[index];
+    //     retval = retval * element;
+    // }
+    // return retval;
+}
+
+// desired behavior: return 0 for empty array of integers,
+//                   return "" for empty array of strings
+function concat(arr) {
+    return reduce(arr, "", (a, e) => a + e);    
+    // let retval = "";
+    // for (let index = 0; index < arr.length; index++) {
+    //     // retval += arr[index];
+    //     let element = arr[index];
+    //     retval = retval + element;
+    // }
+    // return retval;
+}
+
+
