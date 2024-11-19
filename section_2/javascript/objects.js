@@ -2,19 +2,24 @@
 //     return { 'width': w, 'height': h };
 // }
 
-const rectanglePrototype = {
-    'getArea': function () {
-        return this.width * this.height;
-    }
-};
+// let rectanglePrototype = {
+//     'getArea': function () {
+//         return this.width * this.height;
+//     }
+// };
 
 // Preferred way: put prototype directly on Rectangle
-// TODO: show this
+Rectangle.prototype.getArea = function() {
+    return this.width * this.height;
+};
 function Rectangle(w, h) {
     // if called as a constructor (new Rectangle(..., ...))
-    // this = {};
+    // this = {}; // automatic
+    // this.__proto__ = Rectangle.prototype; // automatic
     this.width = w;
     this.height = h;
-    this.__proto__ = rectanglePrototype;
-    // return this;
+
+    // this.__proto__ = rectanglePrototype;
+
+    // return this; // automatic
 }
