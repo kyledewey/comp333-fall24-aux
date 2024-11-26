@@ -8,7 +8,13 @@
 //     }
 // };
 
+Shape.prototype.isShape = function() {
+    return true;
+}
+function Shape() {}
+
 // Preferred way: put prototype directly on Rectangle
+Rectangle.prototype = new Shape();
 Rectangle.prototype.getArea = function() {
     return this.width * this.height;
 };
