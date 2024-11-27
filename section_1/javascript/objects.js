@@ -1,4 +1,9 @@
-// For Wednesday: get into handout
+Shape.prototype.isShape = function() {
+    return true;
+}
+function Shape() {}
+
+Rectangle.prototype = new Shape();
 Rectangle.prototype.getArea = function () {
     return this.width * this.height;
 }
